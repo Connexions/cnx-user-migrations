@@ -5,7 +5,7 @@
 -- # See LICENCE.txt for details.
 -- # ###
 BEGIN;
-INSERT INTO users (email, firstname, othername, surname, _legacy_id)
-	SELECT email, firstname, othername, surname, personid FROM persons
-		WHERE NOT EXISTS (SELECT 1 FROM users WHERE users._legacy_id = persons.personid);
+  INSERT INTO users (email, firstname, othername, surname, _legacy_id, fullname, website, title, suffix)
+    SELECT email, firstname, othername, surname, personid, fullname, homepage, honorific, lineage FROM persons
+      WHERE NOT EXISTS (SELECT 1 FROM users WHERE users._legacy_id = persons.personid);
 COMMIT;
